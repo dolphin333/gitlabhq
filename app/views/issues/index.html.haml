@@ -16,10 +16,10 @@
           = hidden_field_tag :label_name, params[:label_name], id: 'search_label_name'
           = search_field_tag :issue_search, nil, { placeholder: 'Search', class: 'issue_search input-xlarge append-right-10 search-text-input' }
 
-  .clearfix
+  .clearfix(style="height:10px;")
 
 .row
-  .span3
+  .span3(style="border-right: 1px solid #ddd;margin-right: -1px;")
     = render 'filter', entity: 'issue'
-  .span9.issues-holder
+  .span9.issues-holder(style="margin-top:-12px;")
     = render "issues"
