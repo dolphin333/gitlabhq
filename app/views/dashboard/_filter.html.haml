@@ -10,12 +10,21 @@
       %li{class: ("active" if !params[:status])}
         = link_to dashboard_filter_path(entity, status: nil) do
           Open
+          %span.count
+            = Issue.opened.count if entity == 'issue'
+            = MergeRequest.opened.count if entity == 'merge_request'
       %li{class: ("active" if params[:status] == 'closed')}
         = link_to dashboard_filter_path(entity, status: 'closed') do
           Closed
+          %span.count
+            = Issue.with_state(:closed).count if entity == 'issue'
+            = MergeRequest.closed.count if entity == 'merge_request'
       %li{class: ("active" if params[:status] == 'all')}
         = link_to dashboard_filter_path(entity, status: 'all') do
           All
+          %span.count
+            = Issue.count if entity == 'issue'
+            = MergeRequest.count if entity == 'merge_request'
 
   %fieldset
     %legend Projects:
@@ -27,7 +36,7 @@
               = project.name_with_namespace
               %small.pull-right= entities_per_project(project, entity)
 
-  %fieldset
+  %fieldset(style="margin-right:10px;")
     %hr
     = link_to "Reset", dashboard_filter_path(entity), class: 'btn pull-right'
 

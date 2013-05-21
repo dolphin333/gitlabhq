@@ -9,7 +9,7 @@
   %br
 
   .row
-    .span3
+    .span3(style="border-right:1px solid #ddd;margin-right:-1px;")
       %ul.nav.nav-pills.nav-stacked
         %li{class: ("active" if (params[:f] == "active" || !params[:f]))}
           = link_to project_milestones_path(@project, f: "active") do

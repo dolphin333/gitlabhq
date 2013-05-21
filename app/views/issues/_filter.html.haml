@@ -4,29 +4,24 @@
       %li{class: ("active" if !params[:status] || params[:status].blank?)}
         = link_to project_issues_path(@project, status: nil) do
           Open
-          %span.count
-            = @project.issues.opened.count
+          %span.count= @project.issues.opened.count
       %li{class: ("active" if params[:status] == 'assigned-to-me')}
         = link_to project_issues_path(@project, status: 'assigned-to-me') do
           Assigned to me
-          %span.count
-            = @project.issues.open_for(current_user).count
+          %span.count= @project.issues.open_for(current_user).count
       %li{class: ("active" if params[:status] == 'created-by-me')}
         = link_to project_issues_path(@project, status: 'created-by-me') do
           Created by me
-          %span.count
-            = @project.issues.authored(current_user).count
+          %span.count= @project.issues.authored(current_user).count
       %li{class: ("active" if params[:status] == 'closed')}
         = link_to project_issues_path(@project, status: 'closed') do
           Closed
-          %span.count
-            = @project.issues.with_state(:closed).count
+          %span.count= @project.issues.with_state(:closed).count
       %li{class: ("active" if params[:status] == 'all')}
         = link_to project_issues_path(@project, status: 'all') do
           All
-          %span.count
-            = @project.issues.count
+          %span.count= @project.issues.count
 
-  %fieldset(style="margin-right: 10px;")
+  %fieldset(style="margin-right:10px;")
     %hr
     = link_to "Reset", project_issues_path(@project), class: 'btn pull-right'
