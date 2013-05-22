@@ -12,19 +12,19 @@
           Open
           %span.count
             = Issue.opened.count if entity == 'issue'
-            = MergeRequest.opened.count if entity == 'merge_request'
+            = current_user.cared_merge_requests.opened.count if entity == 'merge_request'
       %li{class: ("active" if params[:status] == 'closed')}
         = link_to dashboard_filter_path(entity, status: 'closed') do
           Closed
           %span.count
             = Issue.with_state(:closed).count if entity == 'issue'
-            = MergeRequest.closed.count if entity == 'merge_request'
+            = current_user.cared_merge_requests.closed.count if entity == 'merge_request'
       %li{class: ("active" if params[:status] == 'all')}
         = link_to dashboard_filter_path(entity, status: 'all') do
           All
           %span.count
             = Issue.count if entity == 'issue'
-            = MergeRequest.count if entity == 'merge_request'
+            = current_user.cared_merge_requests.count if entity == 'merge_request'
 
   %fieldset
     %legend Projects:
